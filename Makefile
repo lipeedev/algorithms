@@ -1,5 +1,5 @@
 CXX= g++
-exec = sort
+exec = app
 sources = $(wildcard src/*.cpp)
 objects = $(sources:.cpp=.o)
 flags = -g -Wall -O3
