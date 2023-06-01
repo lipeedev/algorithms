@@ -1,3 +1,4 @@
+#include "../include/binarysearch.h"
 #include "../include/quicksort.h"
 #include "../include/utils.h"
 #include <iostream>
@@ -12,13 +13,15 @@ int main() {
     list.at(i) = random_number;
   }
 
-  std::cout << "before: ";
-  print_vector(list);
-
   quicksort(list);
 
-  std::cout << "after: ";
+  int value{41};
+  int index_of_value{binarysearch(list, value)};
+
+  std::cout << "sorted list: ";
   print_vector(list);
+  std::cout << "index of value " << value << ": " << index_of_value << '\n';
+  std::cout << list.at(index_of_value);
 
   return 0;
 }
