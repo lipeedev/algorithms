@@ -1,27 +1,36 @@
-#include "../include/binarysearch.h"
-#include "../include/quicksort.h"
-#include "../include/utils.h"
+#include "../include/binarytree.h"
 #include <iostream>
 
 int main() {
 
-  srand((unsigned int)time(NULL));
-  std::vector<int> list(100000); // test with 100K values
+  TreeNode<char> n1('p');
+  TreeNode<char> n2('e');
+  TreeNode<char> n3('e');
+  TreeNode<char> n4('l');
+  TreeNode<char> n5('2');
+  TreeNode<char> n6('1');
+  TreeNode<char> n7('3');
 
-  for (std::size_t i{0}; i < list.size(); ++i) {
-    int random_number{rand() % 50};
-    list.at(i) = random_number;
-  }
+  n1.left = &n2;
+  n1.right = &n5;
 
-  quicksort(list);
+  n2.left = &n4;
+  n2.right = &n3;
 
-  int value{41};
-  int index_of_value{binarysearch(list, value)};
+  n5.left = &n6;
+  n5.right = &n7;
 
-  std::cout << "sorted list: ";
-  print_vector(list);
-  std::cout << "index of value " << value << ": " << index_of_value << '\n';
-  std::cout << list.at(index_of_value);
+  /*
+            'p'
+          /    \
+      'e'     '2'
+      / \     / \
+    'l' 'e' '1' '3'
+
+  */
+
+  BinaryTree<char> tree(&n1);
+  tree.inorder_traversal();
 
   return 0;
 }
