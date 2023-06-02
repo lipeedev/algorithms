@@ -1,4 +1,5 @@
 #pragma once
+#include <functional>
 
 template <typename T> struct TreeNode {
   TreeNode<T> *left;
@@ -17,6 +18,14 @@ public:
   BinaryTree(TreeNode<T> *node);
   virtual ~BinaryTree() {}
 
-  void inorder_traversal(TreeNode<T> *node);
-  void inorder_traversal();
+  void inorder_traversal(TreeNode<T> *node,
+                         const std::function<void(T &)> &callback);
+  void inorder_traversal(const std::function<void(T &)> &callback);
+
+  void postorder_traversal(TreeNode<T> *node,
+                           const std::function<void(T &)> &callback);
+  void postorder_traversal(const std::function<void(T &)> &callback);
+
+  int height(TreeNode<T> *node);
+  int height();
 };

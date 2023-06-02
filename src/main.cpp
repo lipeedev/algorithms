@@ -30,7 +30,11 @@ int main() {
   */
 
   BinaryTree<char> tree(&n1);
-  tree.inorder_traversal();
+
+  tree.postorder_traversal([](char &data) { std::cout << data << ' '; });
+  std::cout << '\n';
+  tree.inorder_traversal([](char &data) { std::cout << data << ' '; });
+  std::cout << "\nheight: " << tree.height() << '\n';
 
   return 0;
 }
