@@ -10,21 +10,21 @@ template <typename T> struct TreeNode {
 };
 
 template <class T> class BinaryTree {
-private:
+protected:
   TreeNode<T> *root;
 
 public:
   BinaryTree();
   BinaryTree(TreeNode<T> *node);
-  virtual ~BinaryTree() {}
+  ~BinaryTree();
 
   void inorder_traversal(TreeNode<T> *node,
-                         const std::function<void(T &)> &callback);
-  void inorder_traversal(const std::function<void(T &)> &callback);
+                         const std::function<void(TreeNode<T> *)> &callback);
+  void inorder_traversal(const std::function<void(TreeNode<T> *)> &callback);
 
   void postorder_traversal(TreeNode<T> *node,
-                           const std::function<void(T &)> &callback);
-  void postorder_traversal(const std::function<void(T &)> &callback);
+                           const std::function<void(TreeNode<T> *)> &callback);
+  void postorder_traversal(const std::function<void(TreeNode<T> *)> &callback);
 
   int height(TreeNode<T> *node);
   int height();

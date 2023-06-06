@@ -1,22 +1,32 @@
 #include "../include/binarytree.h"
+#include <iostream>
 #include <string>
 
 template <typename T>
 TreeNode<T>::TreeNode(T data) : data(data), right(nullptr), left(nullptr) {}
 
 template <class T> BinaryTree<T>::BinaryTree() { this->root = nullptr; }
-
 template <class T> BinaryTree<T>::BinaryTree(TreeNode<T> *node) : root(node) {}
+template <class T> BinaryTree<T>::~BinaryTree() {
+  this->postorder_traversal([](TreeNode<T> *node) {
+    if (node) {
+      delete node->right;
+      delete node->left;
+      node->left = nullptr;
+      node->right = nullptr;
+    }
+  });
+}
 
 template <class T>
 void BinaryTree<T>::inorder_traversal(
-    TreeNode<T> *node, const std::function<void(T &)> &callback) {
+    TreeNode<T> *node, const std::function<void(TreeNode<T> *)> &callback) {
 
   if (node->left) {
     this->inorder_traversal(node->left, callback);
   }
 
-  callback(node->data);
+  callback(node);
 
   if (node->right) {
     this->inorder_traversal(node->right, callback);
@@ -25,7 +35,7 @@ void BinaryTree<T>::inorder_traversal(
 
 template <class T>
 void BinaryTree<T>::inorder_traversal(
-    const std::function<void(T &)> &callback) {
+    const std::function<void(TreeNode<T> *)> &callback) {
   this->inorder_traversal(this->root, callback);
 }
 
@@ -54,7 +64,7 @@ template <class T> int BinaryTree<T>::height() {
 
 template <class T>
 void BinaryTree<T>::postorder_traversal(
-    TreeNode<T> *node, const std::function<void(T &)> &callback) {
+    TreeNode<T> *node, const std::function<void(TreeNode<T> *)> &callback) {
 
   if (node->left) {
     this->postorder_traversal(node->left, callback);
@@ -64,12 +74,12 @@ void BinaryTree<T>::postorder_traversal(
     this->postorder_traversal(node->right, callback);
   }
 
-  callback(node->data);
+  callback(node);
 }
 
 template <class T>
 void BinaryTree<T>::postorder_traversal(
-    const std::function<void(T &)> &callback) {
+    const std::function<void(TreeNode<T> *)> &callback) {
   this->postorder_traversal(this->root, callback);
 }
 
