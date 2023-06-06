@@ -24,6 +24,10 @@ public:
                            const std::function<void(TreeNode<T> *)> &callback);
   void postorder_traversal(const std::function<void(TreeNode<T> *)> &callback);
 
+  void levelorder_traversal(TreeNode<T> *node,
+                            const std::function<void(TreeNode<T> *)> &callback);
+  void levelorder_traversal(const std::function<void(TreeNode<T> *)> &callback);
+
   int height(TreeNode<T> *node);
   int height();
 };

@@ -1,5 +1,6 @@
 #include "../include/binarytree.h"
 #include <iostream>
+#include <queue>
 #include <string>
 
 template <typename T>
@@ -81,6 +82,35 @@ template <class T>
 void BinaryTree<T>::postorder_traversal(
     const std::function<void(TreeNode<T> *)> &callback) {
   this->postorder_traversal(this->root, callback);
+}
+
+template <class T>
+void BinaryTree<T>::levelorder_traversal(
+    TreeNode<T> *node, const std::function<void(TreeNode<T> *)> &callback) {
+
+  std::queue<TreeNode<T> *> queue;
+  queue.push(node);
+
+  while (!queue.empty()) {
+    node = queue.front();
+
+    if (node->left) {
+      queue.push(node->left);
+    }
+
+    if (node->right) {
+      queue.push(node->right);
+    }
+
+    queue.pop();
+    callback(node);
+  }
+}
+
+template <class T>
+void BinaryTree<T>::levelorder_traversal(
+    const std::function<void(TreeNode<T> *)> &callback) {
+  this->levelorder_traversal(this->root, callback);
 }
 
 template struct TreeNode<char>;
