@@ -10,10 +10,8 @@ template <typename T> struct TreeNode {
 };
 
 template <class T> class BinaryTree {
-protected:
-  TreeNode<T> *root;
-
 public:
+  TreeNode<T> *root;
   BinaryTree();
   BinaryTree(TreeNode<T> *node);
   ~BinaryTree();

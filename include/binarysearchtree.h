@@ -8,4 +8,8 @@ public:
   virtual ~BinarySearchTree() {}
 
   void insert(int value);
+  BinarySearchTree *search(int value);
+
+private:
+  BinarySearchTree *search(int value, TreeNode<int> *node);
 };

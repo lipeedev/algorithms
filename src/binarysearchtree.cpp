@@ -33,3 +33,25 @@ void BinarySearchTree::insert(int value) {
     parent->right = node;
   }
 }
+
+BinarySearchTree *BinarySearchTree::search(int value, TreeNode<int> *node) {
+  if (node == nullptr) {
+    return nullptr;
+  }
+
+  if (node->data == value) {
+    return new BinarySearchTree(node);
+  }
+
+  else if (value < node->data) {
+    return this->search(value, node->left);
+  }
+
+  else {
+    return this->search(value, node->right);
+  }
+}
+
+BinarySearchTree *BinarySearchTree::search(int value) {
+  return this->search(value, this->root);
+}
